@@ -56,17 +56,6 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_UI_REPO:${{ env.SHA_SHORT }}
           docker push $ECR_REGISTRY/$ECR_UI_REPO:latest
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.7.0
-
-      - name: Terraform Init & Apply
-        working-directory: ./terraform
-        run: |
-          terraform init
-          terraform apply -auto-approve
-
       - name: Deploy to ECS Services
         run: |
           aws ecs update-service --cluster $ECS_CLUSTER --service ticketdesk-api-service --force-new-deployment --region ${{ env.AWS_REGION }}
@@ -74,8 +63,8 @@ jobs:
 
       - name: Run Smoke Test against Deployed Endpoint
         run: |
-          echo "Waiting 30 seconds for container startup..."
-          sleep 30
+          echo "Waiting 20 seconds for container deployment..."
+          sleep 20
           ALB_URL="http://ticketdesk-alb-91266493.ap-south-1.elb.amazonaws.com"
           echo "Testing login endpoint..."
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST -H "Content-Type: application/json" -d '{"email":"admin@ticketdesk.com","password":"Admin@123"}' $ALB_URL/api/Auth/login)
