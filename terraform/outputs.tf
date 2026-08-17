@@ -3,6 +3,16 @@ output "alb_dns_name" {
   value       = "http://${aws_lb.main.dns_name}"
 }
 
+output "cloudfront_domain_name" {
+  description = "CloudFront Distribution Domain URL"
+  value       = "https://${aws_cloudfront_distribution.cdn.domain_name}"
+}
+
+output "s3_bucket_name" {
+  description = "S3 Private Frontend Bucket Name"
+  value       = aws_s3_bucket.frontend.id
+}
+
 output "ecr_api_repository_url" {
   description = "ECR Repository URL for API"
   value       = aws_ecr_repository.api.repository_url
