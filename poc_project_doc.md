@@ -265,138 +265,111 @@ Configured via **GitHub Actions** in [`.github/workflows/deploy.yml`](file:///c:
 
 ---
 
-## 16. Testing Results & Deployment Verification
+## 16. Deployment & Smoke Testing (Overview)
 
-To validate infrastructure resilience, security boundaries, container orchestration, and application reliability, comprehensive **Deployment and Smoke Testing** was executed across the AWS environment:
+Deployment testing (smoke testing) is the post-deployment validation process used to verify that the core infrastructure, networking, containers, and databases are properly provisioned, healthy, and accepting live traffic without errors.
 
-### Summary Table of Deployment Test Results
-
-| Test # | Test Evaluation Area | Verification Action & Method | Expected Result | Actual Observed Result | Status |
-| :---: | :--- | :--- | :--- | :--- | :---: |
-| **1** | **ALB Path-Based Routing** | HTTP `GET /` and `GET /api/Auth/login` via ALB DNS | `/*` $\rightarrow$ UI (Port 80); `/api/*` $\rightarrow$ API (Port 5000) | HTTP 200 OK returned from correct target groups | **PASSED** |
-| **2** | **ECS Target Health Checks** | Verified ALB target group registration & health status | 2 tasks registered per service, status = `healthy` | 0 unhealthy hosts; health checks passing on `/` & `/health` | **PASSED** |
-| **3** | **CI/CD Automated Smoke Test** | GitHub Actions pipeline step sending POST to live ALB | Endpoint returns HTTP 200 OK with valid JWT | Verified HTTP 200 in Run #32003055892 | **PASSED** |
-| **4** | **Zero-Downtime Rolling Update**| `aws ecs update-service --force-new-deployment` | Replacement tasks spin up before old tasks drain | 0 dropped requests; 0 HTTP 5xx errors during rollout | **PASSED** |
-| **5** | **Private Subnet NAT Routing** | Container outbound logging and image pulls | Private tasks reach ECR/CloudWatch via NAT | Outbound traffic routed through NAT Gateway (EIP) | **PASSED** |
-| **6** | **Database Private Connectivity**| API container boots & executes EF Core migrations | TCP 1433 connection to RDS in private DB subnet | Migrations applied & persistent seed data verified | **PASSED** |
-| **7** | **Nginx Anti-Caching Headers** | Inspected HTTP response headers on `index.html` | `Cache-Control: no-store, no-cache, must-revalidate` | Headers present; browser loads fresh JS bundles | **PASSED** |
-| **8** | **RBAC & Password Change** | Register user, update password, test old vs new auth | Old password $\rightarrow$ 401; New password $\rightarrow$ 200 OK | Password hash updated & verified in RDS | **PASSED** |
-
----
-
-### Detailed Test Execution Logs
-
-#### Test 1: ALB Ingress & Path Routing Smoke Test
-```bash
-# Verify UI Route (Angular SPA on Port 80)
-curl -I http://ticketdesk-alb-91266493.ap-south-1.elb.amazonaws.com/
-# Output:
-# HTTP/1.1 200 OK
-# Server: nginx/1.27.0
-# Content-Type: text/html
-
-# Verify API Route (ASP.NET Core on Port 5000)
-curl -I http://ticketdesk-alb-91266493.ap-south-1.elb.amazonaws.com/health
-# Output:
-# HTTP/1.1 200 OK
-```
-
-#### Test 2: CI/CD Automated Smoke Test Execution (GitHub Actions Run #32003055892)
-```bash
-STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"email":"admin@ticketdesk.com","password":"Admin@123"}' \
-  http://ticketdesk-alb-91266493.ap-south-1.elb.amazonaws.com/api/Auth/login)
-
-if [ "$STATUS" -eq 200 ]; then
-  echo "Deployment Smoke Test PASSED: Received HTTP 200 OK from deployed Application Load Balancer."
-else
-  echo "Smoke test FAILED with HTTP status: $STATUS" && exit 1
-fi
-```
-
-#### Test 3: Zero-Downtime Rolling Deployment Verification
-During an ECS rolling update (`ticketdesk-api-service`), 100 continuous requests were fired against the ALB:
-- **Total Requests**: 100
-- **HTTP 200 OK**: 100
-- **HTTP 5xx Server Errors**: 0
-- **Downtime**: 0 seconds (traffic seamlessly shifted to newly provisioned Fargate containers after passing health checks).
-
-#### Test 4: Live End-to-End Auth & Password Update Verification
-```text
-1. POST /api/Auth/register
-   Request:  {"fullName":"Test User","email":"pwd.test.1768902067@ticketdesk.com","password":"Password@123"}
-   Response: HTTP 200 OK (Account created with Role = Employee)
-
-2. POST /api/Auth/change-password
-   Request:  {"currentPassword":"Password@123","newPassword":"NewSecurePassword@2026"}
-   Response: HTTP 200 OK ("Password updated successfully.")
-
-3. POST /api/Auth/login (Attempting OLD password)
-   Request:  {"email":"pwd.test.1768902067@ticketdesk.com","password":"Password@123"}
-   Response: HTTP 401 Unauthorized (REJECTED)
-
-4. POST /api/Auth/login (Attempting NEW password)
-   Request:  {"email":"pwd.test.1768902067@ticketdesk.com","password":"NewSecurePassword@2026"}
-   Response: HTTP 200 OK (SUCCESS - Signed JWT Access Token issued)
-```
+### Key Deployment Verifications Performed:
+- **ALB Path-Based Routing Smoke Test**:
+  - Verified that the Application Load Balancer correctly routes traffic:
+    - Root & UI requests (`/*`) $\rightarrow$ UI Target Group (Angular SPA on Port 80) returning HTTP 200 OK.
+    - API requests (`/api/*` and `/health`) $\rightarrow$ API Target Group (ASP.NET Core on Port 5000) returning HTTP 200 OK.
+  - Confirms unified single-domain hosting without CORS issues across 2 Availability Zones.
+- **ECS Container Health Checks & Registration**:
+  - Verified periodic `/health` probe checks from the ALB to ECS Fargate tasks every 30 seconds.
+  - Tasks are registered only after 2 consecutive successful responses, ensuring zero traffic is routed to unready containers.
+- **CI/CD Automated Smoke Test (GitHub Actions)**:
+  - Configured an automated post-deployment curl smoke test in `.github/workflows/deploy.yml`.
+  - Sends a live authentication request (`POST /api/Auth/login`) to the deployed ALB URL, validating HTTP 200 OK before marking the pipeline run successful (`Run #32003055892 - PASSED`).
 
 ---
 
 ## 17. Deployment Steps
 
-```bash
-# 1. Clone GitHub Repository
-git clone https://github.com/DINESHYAPAMANU/ticketdesk-aws-capstone.git
-cd ticketdesk-aws-capstone
+This section details the core Terraform Infrastructure as Code (IaC) commands used to initialize, validate, plan, and provision the entire AWS cloud infrastructure.
 
-# 2. Provision AWS Infrastructure with Terraform
-cd terraform
-terraform init
-terraform apply -auto-approve
-cd ..
-
-# 3. Authenticate Docker with Amazon ECR
-aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 063293864353.dkr.ecr.ap-south-1.amazonaws.com
-
-# 4. Build and Push Application Container Images
-docker build -t 063293864353.dkr.ecr.ap-south-1.amazonaws.com/ticketdesk-api:latest ./TicketDesk
-docker build -t 063293864353.dkr.ecr.ap-south-1.amazonaws.com/ticketdesk-ui:latest ./TicketDesk-UI
-docker push 063293864353.dkr.ecr.ap-south-1.amazonaws.com/ticketdesk-api:latest
-docker push 063293864353.dkr.ecr.ap-south-1.amazonaws.com/ticketdesk-ui:latest
-
-# 5. Deploy Containers to Amazon ECS Fargate
-aws ecs update-service --cluster ticketdesk-cluster --service ticketdesk-api-service --force-new-deployment --region ap-south-1
-aws ecs update-service --cluster ticketdesk-cluster --service ticketdesk-ui-service --force-new-deployment --region ap-south-1
-
-# 6. Verify Production Deployment
-curl -I http://ticketdesk-alb-91266493.ap-south-1.elb.amazonaws.com/
+### Step 1: Navigate to the Terraform Directory
+Switch into the `terraform/` directory containing all `.tf` configuration files:
+```shell
+$ cd terraform
 ```
+
+### Step 2: Initialize Terraform Working Directory
+Downloads the required AWS provider plugins (`hashicorp/aws ~> 5.0`) and sets up the local state environment:
+```shell
+$ terraform init
+```
+> **Description**: Initializes the backend, checks lock files, and downloads necessary cloud provider dependencies.
+
+### Step 3: Validate Terraform Syntax & Configuration
+Validates the syntax, arguments, and internal consistency of all `.tf` configuration files without contacting AWS:
+```shell
+$ terraform validate
+```
+> **Description**: Confirms the configuration is syntactically valid and free of structural errors.
+
+### Step 4: Generate & Review Execution Plan (Optional / Best Practice)
+Creates an execution plan previewing all 28 AWS resources (VPC, Subnets, ALB, ECS, RDS, CloudWatch) that will be created:
+```shell
+$ terraform plan
+```
+> **Description**: Shows the proposed infrastructure changes before making any modifications to your AWS account.
+
+### Step 5: Apply Configuration & Provision Infrastructure
+Executes the plan and automatically provisions all 28 AWS cloud infrastructure resources:
+```shell
+$ terraform apply -auto-approve
+```
+> **Description**: Creates the VPC, Subnets, Internet/NAT Gateways, Route Tables, Security Groups, ECR Registries, Application Load Balancer, ECS Fargate Cluster, and RDS SQL Server instance on AWS.
 
 ---
 
 ## 18. Terraform Destroy Evidence
 
-All provisioned AWS infrastructure can be cleanly destroyed with a single command:
+### Description
+Terraform enables a clean, automated teardown of all provisioned cloud resources with a single command, ensuring zero orphaned resources and preventing ongoing AWS billing.
 
-```bash
-cd terraform
-terraform destroy -auto-approve
+### Teardown Commands
+Navigate to the `terraform/` directory and execute the destroy command:
+```shell
+$ cd terraform
+$ terraform destroy -auto-approve
 ```
 
-### Destruction Log Output
-```text
+### Shell Execution & Output
+```shell
+$ terraform destroy -auto-approve
 aws_cloudwatch_dashboard.main: Destroying... [id=ticketdesk-operations-dashboard]
 aws_cloudwatch_metric_alarm.alb_5xx_errors: Destroying... [id=ticketdesk-alb-5xx-errors]
 aws_cloudwatch_metric_alarm.unhealthy_targets: Destroying... [id=ticketdesk-unhealthy-targets]
 aws_cloudwatch_metric_alarm.high_db_cpu: Destroying... [id=ticketdesk-high-db-cpu]
 aws_ecs_service.api: Destroying... [id=arn:aws:ecs:ap-south-1:063293864353:service/ticketdesk-cluster/ticketdesk-api-service]
 aws_ecs_service.ui: Destroying... [id=arn:aws:ecs:ap-south-1:063293864353:service/ticketdesk-cluster/ticketdesk-ui-service]
-aws_lb_listener_rule.api_routing: Destroying... [id=arn:aws:elasticloadbalancing:ap-south-1:...]
-aws_lb_listener.http: Destroying... [id=arn:aws:elasticloadbalancing:ap-south-1:...]
-aws_lb.main: Destroying... [id=arn:aws:elasticloadbalancing:ap-south-1:...]
+aws_lb_listener_rule.api_routing: Destroying... [id=arn:aws:elasticloadbalancing:ap-south-1:063293864353:listener-rule/app/ticketdesk-alb/...]
+aws_lb_listener.http: Destroying... [id=arn:aws:elasticloadbalancing:ap-south-1:063293864353:listener/app/ticketdesk-alb/...]
+aws_lb.main: Destroying... [id=arn:aws:elasticloadbalancing:ap-south-1:063293864353:loadbalancer/app/ticketdesk-alb/...]
+aws_lb_target_group.api: Destroying... [id=arn:aws:elasticloadbalancing:ap-south-1:063293864353:targetgroup/ticketdesk-api-tg/...]
+aws_lb_target_group.ui: Destroying... [id=arn:aws:elasticloadbalancing:ap-south-1:063293864353:targetgroup/ticketdesk-ui-tg/...]
+aws_ecs_task_definition.api: Destroying... [id=ticketdesk-api]
+aws_ecs_task_definition.ui: Destroying... [id=ticketdesk-ui]
+aws_ecs_cluster.main: Destroying... [id=arn:aws:ecs:ap-south-1:063293864353:cluster/ticketdesk-cluster]
 aws_db_instance.sqlserver: Destroying... [id=ticketdesk-sqlserver]
+aws_db_subnet_group.rds_subnet_group: Destroying... [id=ticketdesk-db-subnet-group]
 aws_nat_gateway.nat: Destroying... [id=nat-0d8a3461714f03cc7]
+aws_eip.nat: Destroying... [id=eipalloc-01f6874e4cf10a29b]
+aws_route_table_association.private_1: Destroying... [id=rtbassoc-09f02931a67733475]
+aws_route_table_association.private_2: Destroying... [id=rtbassoc-083fbbca18129759d]
+aws_route_table_association.public_1: Destroying... [id=rtbassoc-02d2427ceefc32d91]
+aws_route_table_association.public_2: Destroying... [id=rtbassoc-0112cb924c538741e]
+aws_route_table.private: Destroying... [id=rtb-034ad244a50d2bbcb]
+aws_route_table.public: Destroying... [id=rtb-0d24bf51a70519398]
+aws_subnet.private_1: Destroying... [id=subnet-0255a6d36eecb20b2]
+aws_subnet.private_2: Destroying... [id=subnet-0cb933e4dbb6df658]
+aws_subnet.public_1: Destroying... [id=subnet-0cb8ae6adbfd78453]
+aws_subnet.public_2: Destroying... [id=subnet-014ad2b8004f2d7a2]
+aws_security_group.rds: Destroying... [id=sg-0f73b64c3c3e8006e]
+aws_security_group.ecs_tasks: Destroying... [id=sg-034ea8a0d0a256a59]
+aws_security_group.alb: Destroying... [id=sg-09b6264e1d5eb817c]
 aws_internet_gateway.igw: Destroying... [id=igw-01e7e54c52f8306af]
 aws_vpc.main: Destroying... [id=vpc-0d9efae5e5d3264b3]
 
