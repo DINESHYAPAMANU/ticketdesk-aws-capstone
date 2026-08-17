@@ -1,0 +1,68 @@
+2026-08-10 23:03:04.841 +05:30 [INF] Ensuring database is created and migrating to latest schema version...
+2026-08-10 23:03:06.038 +05:30 [INF] Seeding database with initial default data...
+2026-08-10 23:03:06.326 +05:30 [INF] Database initialization completed successfully.
+2026-08-10 23:03:06.549 +05:30 [INF] Now listening on: http://localhost:5000
+2026-08-10 23:03:06.564 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-10 23:03:06.578 +05:30 [INF] Hosting environment: Production
+2026-08-10 23:03:06.594 +05:30 [INF] Content root path: C:\Users\mouni\OneDrive\Desktop\AWS Project\Ticketdesk
+2026-08-10 23:04:32.319 +05:30 [INF] HTTP OPTIONS /api/Auth/login responded 204 in 116.9526 ms
+2026-08-10 23:04:32.755 +05:30 [INF] HTTP OPTIONS /api/Auth/login responded 204 in 30.1044 ms
+2026-08-10 23:04:35.995 +05:30 [INF] User 2 logged in successfully.
+2026-08-10 23:04:37.349 +05:30 [INF] HTTP POST /api/Auth/login responded 200 in 4560.4067 ms
+2026-08-10 23:04:37.462 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.4449 ms
+2026-08-10 23:04:37.468 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 0.3650 ms
+2026-08-10 23:04:38.802 +05:30 [INF] Dashboard metrics summary generated.
+2026-08-10 23:04:38.957 +05:30 [INF] HTTP GET /api/Dashboard/summary responded 200 in 1348.7084 ms
+2026-08-10 23:04:39.358 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 1773.4094 ms
+2026-08-10 23:05:04.551 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.2398 ms
+2026-08-10 23:05:04.891 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 59.5431 ms
+2026-08-10 23:05:08.258 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.0475 ms
+2026-08-10 23:05:08.257 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 0.0849 ms
+2026-08-10 23:05:09.218 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 220.0649 ms
+2026-08-10 23:05:09.323 +05:30 [INF] Dashboard metrics summary generated.
+2026-08-10 23:05:09.372 +05:30 [INF] HTTP GET /api/Dashboard/summary responded 200 in 117.2352 ms
+2026-08-10 23:06:20.364 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 0.7847 ms
+2026-08-10 23:06:20.368 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.2830 ms
+2026-08-10 23:06:20.484 +05:30 [INF] Dashboard metrics summary generated.
+2026-08-10 23:06:20.503 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 66.5381 ms
+2026-08-10 23:06:20.535 +05:30 [INF] HTTP GET /api/Dashboard/summary responded 200 in 116.4423 ms
+2026-08-10 23:06:28.382 +05:30 [INF] Application is shutting down...
+2026-08-10 23:06:53.859 +05:30 [INF] Ensuring database is created and migrating to latest schema version...
+2026-08-10 23:06:55.984 +05:30 [INF] Seeding database with initial default data...
+2026-08-10 23:06:56.432 +05:30 [INF] Database initialization completed successfully.
+2026-08-10 23:06:56.704 +05:30 [INF] Now listening on: http://localhost:5000
+2026-08-10 23:06:56.725 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-10 23:06:56.741 +05:30 [INF] Hosting environment: Production
+2026-08-10 23:06:56.763 +05:30 [INF] Content root path: C:\Users\mouni\OneDrive\Desktop\AWS Project\Ticketdesk
+2026-08-10 23:07:06.813 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 141.6348 ms
+2026-08-10 23:07:06.812 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 140.9942 ms
+2026-08-10 23:07:06.908 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 5.5936 ms
+2026-08-10 23:07:06.908 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 5.0803 ms
+2026-08-10 23:07:08.421 +05:30 [INF] Dashboard metrics summary generated for User 2 (Role: Employee).
+2026-08-10 23:07:08.591 +05:30 [INF] HTTP GET /api/Dashboard/summary responded 200 in 1568.6042 ms
+2026-08-10 23:07:09.722 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 2705.8920 ms
+2026-08-10 23:07:52.747 +05:30 [INF] HTTP OPTIONS /api/Auth/register responded 204 in 8.7460 ms
+2026-08-10 23:07:55.306 +05:30 [INF] User registered successfully with ID 4 and Role "Employee"
+2026-08-10 23:07:55.540 +05:30 [INF] HTTP POST /api/Auth/register responded 200 in 2689.7153 ms
+2026-08-10 23:07:55.665 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 0.6806 ms
+2026-08-10 23:07:55.666 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.2956 ms
+2026-08-10 23:07:55.834 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 28.5499 ms
+2026-08-10 23:07:55.850 +05:30 [INF] Dashboard metrics summary generated for User 4 (Role: Employee).
+2026-08-10 23:07:55.932 +05:30 [INF] HTTP GET /api/Dashboard/summary responded 200 in 158.6821 ms
+2026-08-10 23:08:45.238 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 4.0196 ms
+2026-08-10 23:08:45.706 +05:30 [INF] Ticket 6 created by User 4
+2026-08-10 23:08:46.060 +05:30 [INF] HTTP POST /api/Ticket responded 201 in 677.1557 ms
+2026-08-10 23:08:46.146 +05:30 [INF] HTTP OPTIONS /api/Ticket/6 responded 204 in 0.5686 ms
+2026-08-10 23:08:46.324 +05:30 [INF] HTTP GET /api/Ticket/6 responded 200 in 104.5451 ms
+2026-08-10 23:08:46.412 +05:30 [INF] HTTP OPTIONS /api/tickets/6/comments responded 204 in 0.6030 ms
+2026-08-10 23:08:46.900 +05:30 [INF] HTTP GET /api/tickets/6/comments responded 200 in 176.2570 ms
+2026-08-10 23:09:04.595 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 4.0526 ms
+2026-08-10 23:09:04.713 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 18.1377 ms
+2026-08-10 23:09:33.026 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.2484 ms
+2026-08-10 23:09:33.110 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 15.3706 ms
+2026-08-10 23:09:33.763 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 10.2932 ms
+2026-08-10 23:09:33.752 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 0.2253 ms
+2026-08-10 23:09:33.938 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 33.1164 ms
+2026-08-10 23:09:33.979 +05:30 [INF] Dashboard metrics summary generated for User 4 (Role: Employee).
+2026-08-10 23:09:34.353 +05:30 [INF] HTTP GET /api/Dashboard/summary responded 200 in 402.8257 ms
+2026-08-10 23:10:20.984 +05:30 [INF] Application is shutting down...

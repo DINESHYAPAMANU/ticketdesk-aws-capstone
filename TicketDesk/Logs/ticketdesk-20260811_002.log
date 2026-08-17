@@ -1,0 +1,45 @@
+2026-08-11 14:57:01.716 +05:30 [INF] Ensuring database is created and migrating to latest schema version...
+2026-08-11 14:57:03.308 +05:30 [INF] Seeding database with initial default data...
+2026-08-11 14:57:03.796 +05:30 [INF] Database initialization completed successfully.
+2026-08-11 14:57:04.143 +05:30 [INF] Now listening on: http://localhost:5000
+2026-08-11 14:57:04.150 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-11 14:57:04.157 +05:30 [INF] Hosting environment: Production
+2026-08-11 14:57:04.166 +05:30 [INF] Content root path: C:\Users\mouni\OneDrive\Desktop\AWS Project\Ticketdesk
+2026-08-11 14:57:21.401 +05:30 [INF] HTTP OPTIONS /api/Auth/login responded 204 in 72.0461 ms
+2026-08-11 14:57:24.558 +05:30 [INF] User 1 logged in successfully.
+2026-08-11 14:57:25.641 +05:30 [INF] HTTP POST /api/Auth/login responded 200 in 4145.4565 ms
+2026-08-11 14:57:25.691 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 4.2191 ms
+2026-08-11 14:57:25.691 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 1.5981 ms
+2026-08-11 14:57:26.725 +05:30 [INF] Dashboard metrics summary generated for User 1 (Role: Admin).
+2026-08-11 14:57:26.791 +05:30 [INF] HTTP GET /api/Dashboard/summary responded 200 in 1014.1497 ms
+2026-08-11 14:57:27.238 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 1473.2279 ms
+2026-08-11 14:57:33.343 +05:30 [INF] HTTP OPTIONS /api/Auth/login responded 204 in 0.8681 ms
+2026-08-11 14:57:34.205 +05:30 [INF] User 2 logged in successfully.
+2026-08-11 14:57:34.237 +05:30 [INF] HTTP POST /api/Auth/login responded 200 in 871.1069 ms
+2026-08-11 14:57:34.278 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.3026 ms
+2026-08-11 14:57:34.278 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 0.5183 ms
+2026-08-11 14:57:34.462 +05:30 [INF] Dashboard metrics summary generated for User 2 (Role: Employee).
+2026-08-11 14:57:34.480 +05:30 [INF] HTTP GET /api/Dashboard/summary responded 200 in 146.7186 ms
+2026-08-11 14:57:34.525 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 204.8284 ms
+2026-08-11 14:58:42.680 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.6742 ms
+2026-08-11 14:58:43.035 +05:30 [INF] Ticket 7 created by User 2
+2026-08-11 14:58:43.286 +05:30 [INF] HTTP POST /api/Ticket responded 201 in 576.7660 ms
+2026-08-11 14:58:43.320 +05:30 [INF] HTTP OPTIONS /api/Ticket/7 responded 204 in 0.2250 ms
+2026-08-11 14:58:43.451 +05:30 [INF] HTTP GET /api/Ticket/7 responded 200 in 98.3014 ms
+2026-08-11 14:58:43.481 +05:30 [INF] HTTP OPTIONS /api/tickets/7/comments responded 204 in 0.2536 ms
+2026-08-11 14:58:43.601 +05:30 [INF] HTTP GET /api/tickets/7/comments responded 200 in 87.9107 ms
+2026-08-11 14:58:49.277 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.4098 ms
+2026-08-11 14:58:49.374 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 61.7240 ms
+2026-08-11 14:58:52.316 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.1718 ms
+2026-08-11 14:58:52.316 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 0.5401 ms
+2026-08-11 14:58:52.423 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 67.9237 ms
+2026-08-11 14:58:52.459 +05:30 [INF] Dashboard metrics summary generated for User 2 (Role: Employee).
+2026-08-11 14:58:52.477 +05:30 [INF] HTTP GET /api/Dashboard/summary responded 200 in 103.3114 ms
+2026-08-11 15:01:06.823 +05:30 [INF] HTTP GET /swagger responded 301 in 0.8148 ms
+2026-08-11 15:01:07.101 +05:30 [INF] HTTP GET /swagger/index.html responded 200 in 245.4568 ms
+2026-08-11 15:01:07.106 +05:30 [INF] HTTP GET /swagger/index.js responded 200 in 2.7942 ms
+2026-08-11 15:01:07.897 +05:30 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 641.2699 ms
+2026-08-11 15:11:24.404 +05:30 [INF] HTTP GET /swagger/index.html responded 200 in 1.4083 ms
+2026-08-11 15:11:24.420 +05:30 [INF] HTTP GET /swagger/index.js responded 200 in 0.5839 ms
+2026-08-11 15:11:24.762 +05:30 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 131.0434 ms
+2026-08-11 15:50:34.365 +05:30 [INF] Application is shutting down...

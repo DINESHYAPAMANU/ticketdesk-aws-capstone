@@ -1,0 +1,88 @@
+/* Global Styles & Design System */
+:root {
+  --primary-color: #1e3a8a;
+  --primary-hover: #1d4ed8;
+  --secondary-color: #0f172a;
+  --accent-color: #3b82f6;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --info-color: #06b6d4;
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+  --border-radius: 0.75rem;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #334155;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Glassmorphism Card Utility */
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+}
+
+/* Material Override Utilities */
+.mat-mdc-card {
+  border-radius: var(--border-radius) !important;
+  box-shadow: var(--card-shadow) !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.mat-mdc-table {
+  background: transparent !important;
+}
+
+.mat-mdc-header-row {
+  background-color: #f8fafc !important;
+}
+
+.mat-mdc-header-cell {
+  font-weight: 600 !important;
+  color: #475569 !important;
+  font-size: 0.875rem !important;
+}
+
+/* Badge Utilities */
+.badge-status {
+  padding: 0.35em 0.75em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.badge-open { background-color: #e0f2fe; color: #0369a1; }
+.badge-in-progress { background-color: #fef3c7; color: #b45309; }
+.badge-resolved { background-color: #d1fae5; color: #047857; }
+.badge-closed { background-color: #f1f5f9; color: #475569; }
+
+.badge-low { background-color: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+.badge-medium { background-color: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+.badge-high { background-color: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
+.badge-critical { background-color: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }

@@ -1,0 +1,87 @@
+name: TicketDesk CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  AWS_REGION: ap-south-1
+  ECR_API_REPO: ticketdesk-api
+  ECR_UI_REPO: ticketdesk-ui
+  ECS_CLUSTER: ticketdesk-cluster
+
+jobs:
+  build-and-deploy:
+    name: Build, Scan, Deploy & Smoke Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Log in to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Set Image Tag (Git Commit SHA)
+        id: vars
+        run: echo "SHA_SHORT=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      - name: Build & Push API Image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_API_REPO:${{ env.SHA_SHORT }} ./TicketDesk
+          docker tag $ECR_REGISTRY/$ECR_API_REPO:${{ env.SHA_SHORT }} $ECR_REGISTRY/$ECR_API_REPO:latest
+          docker push $ECR_REGISTRY/$ECR_API_REPO:${{ env.SHA_SHORT }}
+          docker push $ECR_REGISTRY/$ECR_API_REPO:latest
+
+      - name: Build & Push UI Image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_UI_REPO:${{ env.SHA_SHORT }} ./TicketDesk-UI
+          docker tag $ECR_REGISTRY/$ECR_UI_REPO:${{ env.SHA_SHORT }} $ECR_REGISTRY/$ECR_UI_REPO:latest
+          docker push $ECR_REGISTRY/$ECR_UI_REPO:${{ env.SHA_SHORT }}
+          docker push $ECR_REGISTRY/$ECR_UI_REPO:latest
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.0
+
+      - name: Terraform Init & Apply
+        working-directory: ./terraform
+        run: |
+          terraform init
+          terraform apply -auto-approve
+
+      - name: Deploy to ECS Services
+        run: |
+          aws ecs update-service --cluster $ECS_CLUSTER --service ticketdesk-api-service --force-new-deployment --region ${{ env.AWS_REGION }}
+          aws ecs update-service --cluster $ECS_CLUSTER --service ticketdesk-ui-service --force-new-deployment --region ${{ env.AWS_REGION }}
+
+      - name: Run Smoke Test against Deployed Endpoint
+        run: |
+          echo "Waiting 30 seconds for container startup..."
+          sleep 30
+          ALB_URL="http://ticketdesk-alb-91266493.ap-south-1.elb.amazonaws.com"
+          echo "Testing login endpoint..."
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST -H "Content-Type: application/json" -d '{"email":"admin@ticketdesk.com","password":"Admin@123"}' $ALB_URL/api/Auth/login)
+          if [ "$STATUS" -eq 200 ]; then
+            echo "Smoke test PASSED with status code 200!"
+          else
+            echo "Smoke test FAILED with status code $STATUS"
+            exit 1
+          fi

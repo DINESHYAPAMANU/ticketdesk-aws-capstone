@@ -1,0 +1,137 @@
+2026-08-11 10:14:26.293 +05:30 [INF] Ensuring database is created and migrating to latest schema version...
+2026-08-11 10:14:28.593 +05:30 [INF] Seeding database with initial default data...
+2026-08-11 10:14:29.205 +05:30 [INF] Database initialization completed successfully.
+2026-08-11 10:14:29.813 +05:30 [INF] Now listening on: http://localhost:5000
+2026-08-11 10:14:29.839 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-11 10:14:29.857 +05:30 [INF] Hosting environment: Production
+2026-08-11 10:14:29.873 +05:30 [INF] Content root path: C:\Users\mouni\OneDrive\Desktop\AWS Project\TicketDesk
+2026-08-11 10:14:39.626 +05:30 [INF] HTTP GET / responded 302 in 503.2552 ms
+2026-08-11 10:14:41.005 +05:30 [INF] HTTP GET /swagger responded 301 in 7.8350 ms
+2026-08-11 10:14:42.105 +05:30 [INF] HTTP GET /swagger/index.html responded 200 in 177.0297 ms
+2026-08-11 10:14:42.151 +05:30 [INF] HTTP GET /swagger/index.css responded 200 in 0.6367 ms
+2026-08-11 10:14:42.171 +05:30 [INF] HTTP GET /swagger/index.js responded 200 in 1.4914 ms
+2026-08-11 10:14:42.185 +05:30 [INF] HTTP GET /swagger/swagger-ui.css responded 200 in 65.7515 ms
+2026-08-11 10:14:42.203 +05:30 [INF] HTTP GET /swagger/swagger-ui-standalone-preset.js responded 200 in 34.7631 ms
+2026-08-11 10:14:42.282 +05:30 [INF] HTTP GET /swagger/swagger-ui-bundle.js responded 200 in 118.6534 ms
+2026-08-11 10:14:43.107 +05:30 [INF] HTTP GET /swagger/favicon-16x16.png responded 200 in 6.9280 ms
+2026-08-11 10:14:43.488 +05:30 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 392.7405 ms
+2026-08-11 10:15:09.781 +05:30 [INF] HTTP GET /swagger responded 301 in 0.3006 ms
+2026-08-11 10:15:09.834 +05:30 [INF] HTTP GET /swagger/index.html responded 200 in 1.0392 ms
+2026-08-11 10:15:09.861 +05:30 [INF] HTTP GET /swagger/index.css responded 200 in 0.6368 ms
+2026-08-11 10:15:09.867 +05:30 [INF] HTTP GET /swagger/index.js responded 200 in 0.7741 ms
+2026-08-11 10:15:09.872 +05:30 [INF] HTTP GET /swagger/swagger-ui.css responded 200 in 16.0682 ms
+2026-08-11 10:15:09.873 +05:30 [INF] HTTP GET /swagger/swagger-ui-standalone-preset.js responded 200 in 5.2955 ms
+2026-08-11 10:15:09.905 +05:30 [INF] HTTP GET /swagger/swagger-ui-bundle.js responded 200 in 38.6044 ms
+2026-08-11 10:15:10.414 +05:30 [INF] HTTP GET /swagger/favicon-32x32.png responded 200 in 0.4616 ms
+2026-08-11 10:15:10.693 +05:30 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 328.9109 ms
+2026-08-11 10:17:27.324 +05:30 [INF] HTTP OPTIONS /api/Auth/login responded 204 in 12.9414 ms
+2026-08-11 10:17:30.710 +05:30 [INF] User 4 logged in successfully.
+2026-08-11 10:17:31.762 +05:30 [INF] HTTP POST /api/Auth/login responded 200 in 4264.0166 ms
+2026-08-11 10:17:31.946 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 0.2685 ms
+2026-08-11 10:17:31.947 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.1956 ms
+2026-08-11 10:17:33.201 +05:30 [INF] Dashboard metrics summary generated for User 4 (Role: Employee).
+2026-08-11 10:17:33.301 +05:30 [INF] HTTP GET /api/Dashboard/summary responded 200 in 1304.6181 ms
+2026-08-11 10:17:33.759 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 1733.9751 ms
+2026-08-11 10:17:42.162 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.3123 ms
+2026-08-11 10:17:42.284 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 42.6928 ms
+2026-08-11 10:17:52.163 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 0.7814 ms
+2026-08-11 10:17:52.174 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.1941 ms
+2026-08-11 10:17:52.294 +05:30 [INF] Dashboard metrics summary generated for User 4 (Role: Employee).
+2026-08-11 10:17:52.397 +05:30 [INF] HTTP GET /api/Dashboard/summary responded 200 in 135.7790 ms
+2026-08-11 10:17:52.353 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 34.4202 ms
+2026-08-11 10:18:42.282 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.4064 ms
+2026-08-11 10:18:42.769 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 38.4939 ms
+2026-08-11 10:18:45.233 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.1695 ms
+2026-08-11 10:18:45.233 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 0.4572 ms
+2026-08-11 10:18:45.338 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 21.2348 ms
+2026-08-11 10:18:45.355 +05:30 [INF] Dashboard metrics summary generated for User 4 (Role: Employee).
+2026-08-11 10:18:45.397 +05:30 [INF] HTTP GET /api/Dashboard/summary responded 200 in 65.2869 ms
+2026-08-11 10:20:03.835 +05:30 [INF] HTTP OPTIONS /api/Auth/login responded 204 in 0.5591 ms
+2026-08-11 10:20:05.060 +05:30 [INF] User 1 logged in successfully.
+2026-08-11 10:20:05.186 +05:30 [INF] HTTP POST /api/Auth/login responded 200 in 1319.0408 ms
+2026-08-11 10:20:05.339 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 0.8703 ms
+2026-08-11 10:20:05.344 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.6396 ms
+2026-08-11 10:20:05.554 +05:30 [INF] Dashboard metrics summary generated for User 1 (Role: Admin).
+2026-08-11 10:20:05.608 +05:30 [INF] HTTP GET /api/Dashboard/summary responded 200 in 135.2716 ms
+2026-08-11 10:20:05.725 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 221.0461 ms
+2026-08-11 10:20:10.204 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.3944 ms
+2026-08-11 10:20:10.325 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 27.1889 ms
+2026-08-11 10:20:14.499 +05:30 [INF] HTTP OPTIONS /api/Ticket/6 responded 204 in 0.4950 ms
+2026-08-11 10:20:14.975 +05:30 [INF] HTTP GET /api/Ticket/6 responded 200 in 366.2291 ms
+2026-08-11 10:20:20.534 +05:30 [INF] HTTP OPTIONS /api/Ticket/6 responded 204 in 0.2594 ms
+2026-08-11 10:20:21.017 +05:30 [INF] Ticket 6 updated by User 1
+2026-08-11 10:20:21.082 +05:30 [INF] HTTP PUT /api/Ticket/6 responded 200 in 485.7426 ms
+2026-08-11 10:20:21.234 +05:30 [INF] HTTP GET /api/Ticket/6 responded 200 in 14.1755 ms
+2026-08-11 10:20:21.310 +05:30 [INF] HTTP OPTIONS /api/tickets/6/comments responded 204 in 0.2322 ms
+2026-08-11 10:20:21.523 +05:30 [INF] HTTP GET /api/tickets/6/comments responded 200 in 104.2362 ms
+2026-08-11 10:20:24.690 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.6905 ms
+2026-08-11 10:20:24.771 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 19.9385 ms
+2026-08-11 10:20:33.365 +05:30 [INF] HTTP OPTIONS /api/Auth/login responded 204 in 0.6307 ms
+2026-08-11 10:20:34.138 +05:30 [INF] User 4 logged in successfully.
+2026-08-11 10:20:34.157 +05:30 [INF] HTTP POST /api/Auth/login responded 200 in 728.0334 ms
+2026-08-11 10:20:34.196 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 0.4172 ms
+2026-08-11 10:20:34.196 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.0995 ms
+2026-08-11 10:20:34.270 +05:30 [INF] Dashboard metrics summary generated for User 4 (Role: Employee).
+2026-08-11 10:20:34.291 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 24.4403 ms
+2026-08-11 10:20:34.295 +05:30 [INF] HTTP GET /api/Dashboard/summary responded 200 in 52.1070 ms
+2026-08-11 10:20:46.021 +05:30 [INF] HTTP OPTIONS /api/Auth/login responded 204 in 0.2237 ms
+2026-08-11 10:20:47.152 +05:30 [INF] User 2 logged in successfully.
+2026-08-11 10:20:47.194 +05:30 [INF] HTTP POST /api/Auth/login responded 200 in 992.7157 ms
+2026-08-11 10:20:47.323 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 0.6267 ms
+2026-08-11 10:20:47.329 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.1374 ms
+2026-08-11 10:20:47.468 +05:30 [INF] Dashboard metrics summary generated for User 2 (Role: Employee).
+2026-08-11 10:20:47.498 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 29.4847 ms
+2026-08-11 10:20:47.672 +05:30 [INF] HTTP GET /api/Dashboard/summary responded 200 in 241.4597 ms
+2026-08-11 10:21:02.696 +05:30 [INF] HTTP OPTIONS /api/Auth/login responded 204 in 0.1228 ms
+2026-08-11 10:21:03.780 +05:30 [INF] User 4 logged in successfully.
+2026-08-11 10:21:03.821 +05:30 [INF] HTTP POST /api/Auth/login responded 200 in 984.9635 ms
+2026-08-11 10:21:03.882 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 0.1369 ms
+2026-08-11 10:21:03.882 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.1074 ms
+2026-08-11 10:21:04.033 +05:30 [INF] Dashboard metrics summary generated for User 4 (Role: Employee).
+2026-08-11 10:21:04.106 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 34.6000 ms
+2026-08-11 10:21:04.458 +05:30 [INF] HTTP GET /api/Dashboard/summary responded 200 in 473.4436 ms
+2026-08-11 14:57:01.716 +05:30 [INF] Ensuring database is created and migrating to latest schema version...
+2026-08-11 14:57:03.308 +05:30 [INF] Seeding database with initial default data...
+2026-08-11 14:57:03.796 +05:30 [INF] Database initialization completed successfully.
+2026-08-11 14:57:04.143 +05:30 [INF] Now listening on: http://localhost:5000
+2026-08-11 14:57:04.150 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-11 14:57:04.157 +05:30 [INF] Hosting environment: Production
+2026-08-11 14:57:04.166 +05:30 [INF] Content root path: C:\Users\mouni\OneDrive\Desktop\AWS Project\Ticketdesk
+2026-08-11 14:57:21.401 +05:30 [INF] HTTP OPTIONS /api/Auth/login responded 204 in 72.0461 ms
+2026-08-11 14:57:24.558 +05:30 [INF] User 1 logged in successfully.
+2026-08-11 14:57:25.641 +05:30 [INF] HTTP POST /api/Auth/login responded 200 in 4145.4565 ms
+2026-08-11 14:57:25.691 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 4.2191 ms
+2026-08-11 14:57:25.691 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 1.5981 ms
+2026-08-11 14:57:26.725 +05:30 [INF] Dashboard metrics summary generated for User 1 (Role: Admin).
+2026-08-11 14:57:26.791 +05:30 [INF] HTTP GET /api/Dashboard/summary responded 200 in 1014.1497 ms
+2026-08-11 14:57:27.238 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 1473.2279 ms
+2026-08-11 14:57:33.343 +05:30 [INF] HTTP OPTIONS /api/Auth/login responded 204 in 0.8681 ms
+2026-08-11 14:57:34.205 +05:30 [INF] User 2 logged in successfully.
+2026-08-11 14:57:34.237 +05:30 [INF] HTTP POST /api/Auth/login responded 200 in 871.1069 ms
+2026-08-11 14:57:34.278 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.3026 ms
+2026-08-11 14:57:34.278 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 0.5183 ms
+2026-08-11 14:57:34.462 +05:30 [INF] Dashboard metrics summary generated for User 2 (Role: Employee).
+2026-08-11 14:57:34.480 +05:30 [INF] HTTP GET /api/Dashboard/summary responded 200 in 146.7186 ms
+2026-08-11 14:57:34.525 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 204.8284 ms
+2026-08-11 14:58:42.680 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.6742 ms
+2026-08-11 14:58:43.035 +05:30 [INF] Ticket 7 created by User 2
+2026-08-11 14:58:43.286 +05:30 [INF] HTTP POST /api/Ticket responded 201 in 576.7660 ms
+2026-08-11 14:58:43.320 +05:30 [INF] HTTP OPTIONS /api/Ticket/7 responded 204 in 0.2250 ms
+2026-08-11 14:58:43.451 +05:30 [INF] HTTP GET /api/Ticket/7 responded 200 in 98.3014 ms
+2026-08-11 14:58:43.481 +05:30 [INF] HTTP OPTIONS /api/tickets/7/comments responded 204 in 0.2536 ms
+2026-08-11 14:58:43.601 +05:30 [INF] HTTP GET /api/tickets/7/comments responded 200 in 87.9107 ms
+2026-08-11 14:58:49.277 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.4098 ms
+2026-08-11 14:58:49.374 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 61.7240 ms
+2026-08-11 14:58:52.316 +05:30 [INF] HTTP OPTIONS /api/Ticket responded 204 in 0.1718 ms
+2026-08-11 14:58:52.316 +05:30 [INF] HTTP OPTIONS /api/Dashboard/summary responded 204 in 0.5401 ms
+2026-08-11 14:58:52.423 +05:30 [INF] HTTP GET /api/Ticket responded 200 in 67.9237 ms
+2026-08-11 14:58:52.459 +05:30 [INF] Dashboard metrics summary generated for User 2 (Role: Employee).
+2026-08-11 14:58:52.477 +05:30 [INF] HTTP GET /api/Dashboard/summary responded 200 in 103.3114 ms
+2026-08-11 15:01:06.823 +05:30 [INF] HTTP GET /swagger responded 301 in 0.8148 ms
+2026-08-11 15:01:07.101 +05:30 [INF] HTTP GET /swagger/index.html responded 200 in 245.4568 ms
+2026-08-11 15:01:07.106 +05:30 [INF] HTTP GET /swagger/index.js responded 200 in 2.7942 ms
+2026-08-11 15:01:07.897 +05:30 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 641.2699 ms
+2026-08-11 15:11:24.404 +05:30 [INF] HTTP GET /swagger/index.html responded 200 in 1.4083 ms
+2026-08-11 15:11:24.420 +05:30 [INF] HTTP GET /swagger/index.js responded 200 in 0.5839 ms
+2026-08-11 15:11:24.762 +05:30 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 131.0434 ms
+2026-08-11 15:50:34.365 +05:30 [INF] Application is shutting down...

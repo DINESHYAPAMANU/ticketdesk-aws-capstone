@@ -1,0 +1,51 @@
+services:
+  # MS SQL Server Database Container
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: ticketdesk-db
+    user: "0:0"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=TicketDeskP@ss2026
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql/data
+    networks:
+      - ticketdesk-network
+
+  # .NET 8 Web API Container
+  ticketdesk-api:
+    build:
+      context: ./TicketDesk
+      dockerfile: Dockerfile
+    container_name: ticketdesk-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=TicketDeskDb;User Id=sa;Password=TicketDeskP@ss2026;TrustServerCertificate=True;MultipleActiveResultSets=true
+    ports:
+      - "5000:5000"
+    depends_on:
+      - sqlserver
+    networks:
+      - ticketdesk-network
+
+  # Angular 18 Frontend Container
+  ticketdesk-ui:
+    build:
+      context: ./TicketDesk-UI
+      dockerfile: Dockerfile
+    container_name: ticketdesk-ui
+    ports:
+      - "4200:80"
+    depends_on:
+      - ticketdesk-api
+    networks:
+      - ticketdesk-network
+
+networks:
+  ticketdesk-network:
+    driver: bridge
+
+volumes:
+  mssql_data:
